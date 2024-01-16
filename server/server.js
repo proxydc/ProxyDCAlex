@@ -2,8 +2,12 @@ const express = require("express");
 const accountRoutes = require('./src/account/routes');
 const app = express();
 const PORT = 3000;
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors({
+    origin: "http://localhost:8080"
+}));
 
 app.get("/", (req, res)=> {
     res.send("Hello Proxiad Backend!");

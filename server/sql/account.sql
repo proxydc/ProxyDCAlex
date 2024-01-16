@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS public.account
 (
     id integer NOT NULL DEFAULT nextval('account_id_seq'::regclass),
     login_name character varying(32) COLLATE pg_catalog."default" NOT NULL,
-    diplay_name character varying(32) COLLATE pg_catalog."default",
+    display_name character varying(32) COLLATE pg_catalog."default",
     pass_word character varying(128) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT account_pkey PRIMARY KEY (id, login_name)
 )
