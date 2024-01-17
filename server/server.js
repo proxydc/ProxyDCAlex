@@ -1,5 +1,5 @@
 const express = require("express");
-const accountRoutes = require('./src/account/routes');
+const dbRoutes = require('./src/database/routes');
 const app = express();
 const PORT = 3000;
 const cors = require('cors');
@@ -13,7 +13,7 @@ app.get("/", (req, res)=> {
     res.send("Hello Proxiad Backend!");
 });
 
-app.use("/api/v1/accounts", accountRoutes);
+app.use("/api/v1/database", dbRoutes);
 
 app.listen(PORT, function check(err)
 {
