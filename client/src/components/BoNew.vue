@@ -1,27 +1,36 @@
 <script setup>
 
 import { ref } from 'vue'
-import BackEndService from '../BackEndService'
+
 
 const showCreationForm = ref(false);
 
 const props = defineProps({
-  firstname: String,
-  name: String,
-  email: String
+  firstname: {type: String, required: true},
+  name: {type: String, required: true},
+  email: {type: String, required: true}
 })
 
 defineEmits(['update:firstname', 'update:name', 'update:email', 'create'])
 
+//var firstname, name, email;
 function showAndClearForm(){
   /* Si le formulaire est clos c'est soit qu'il n'a jamais été ouvert, soit qu'il a été fermé par le Emit, 
   donc les données ont été envoyées vers l'API */
-  BackEndService.addCandidat(name, firstname, email)
+  alert("***1***")
+  //BackEndService.addCandidat(name, firstname, email);
+ 
   showCreationForm.value = true;
-  props.firstname = '';
+  props.firstname='';
   props.name = '';
   props.email = '';
+  
+   alert("***2***")
 
+}
+function Initialize(){
+  alert("***"+props.firstname+"***")
+ 
 }
 
 </script>
@@ -32,12 +41,15 @@ function showAndClearForm(){
           <form action="" @submit.prevent="onSubmit">
             <div class="row">
               <div class="col">
+                <!--<input type="text" class="form-control"  v-model="name" placeholder="NOM" /> -->
                 <input class="form-control" type="text" placeholder="NOM" :value="name" @input="$emit('update:name', $event.target.value)">
               </div>
               <div class="col">
+                <!--<input type="text" class="form-control"  v-model="firstname" placeholder="Prénom" />-->
                 <input class="form-control" type="text" placeholder="Prénom" :value="firstname" @input="$emit('update:firstname', $event.target.value)">
               </div>
               <div class="col">
+               <!-- <input type="email" class="form-control"  v-model="email" placeholder="email" />-->
                 <input class="form-control " type="email" placeholder="email" :value="email" @input="$emit('update:email', $event.target.value)">
               </div>
               <div class="col">

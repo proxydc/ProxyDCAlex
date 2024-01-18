@@ -38,7 +38,7 @@ export default {
     methods:{
         async login()
         {
-            const url = 'http://localhost:3000/api/v1/accounts';
+            const url = 'http://localhost:3000/api/v1/database/account';
             
             let result = await axios.post(url, {
                 login_name: this.login_name,

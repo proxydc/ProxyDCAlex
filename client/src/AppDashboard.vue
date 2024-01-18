@@ -1,24 +1,34 @@
 <script setup>
 
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 
 import BoNewDc from './components/BoNew.vue'
 import BoListItem from './components/BoListItem.vue'
+import BackEndService from './BackEndService'
+
 
 /* TODO get data from WS */
-var DcRows = [
+    //var DcRows = computed(() => {return JSON.stringify(BackEndService.getDCs())});
+    //var DcRows =  JSON.stringify(BackEndService.getDCs());
+    var DcRows =  BackEndService.getDCs();
+    // = BackEndService.getDCs().then(val=>val).catch(err=> alert(err));  
+/*[
   {name: 'A', firstname: 'Alexandra', id: 'xp47w5wzt8segz1zeldkvm', tags: [], status: 'En cours'},
   {name: 'B', firstname: 'Bob', id: 'o9n5r3ta0l2z2zijmiqwu', tags: ['Java'], status: 'Finalisé'},
   {name: 'C', firstname: 'Charlie', id: '0tx42yfwu9vdca07iqaup', tags: ['Cobol'], status: 'Finalisé'}
-];
+];*/
+alert("data :"+ DcRows);
 
 var newDcInfos = reactive({name: '', firstname: '', email:'', id: '', tags: [], status: 'Crée'});
 
 
 function createDc(event){
   console.log("Add new Dc"+ event);
-  var uuid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  newDcInfos.id = uuid;
+  alert("je suis la! "+ newDcInfos.name);
+  BackEndService.addCandidat(newDcInfos.name, newDcInfos.firstname, newDcInfos.email);
+  alert("candidat added");
+  /*var uuid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  newDcInfos.id = uuid;*/
   // PUT to API
 }
 
