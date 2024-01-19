@@ -12,6 +12,7 @@ const BoDcLink = computed(() => {
 
 
 <template>
+   <!--if {{ DcRow != null }}-->
     <tr>
         <th scope="row">1</th>
         <td>{{ DcRow.name }}</td>
@@ -31,6 +32,7 @@ const BoDcLink = computed(() => {
             <button type="button" class="btn btn-outline-danger btn-sm">Archiver</button>
         </td>
     </tr>
+
 </template>
 
 <style scoped>

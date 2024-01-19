@@ -43,7 +43,7 @@ export default {
   },*/
   methods: {
     async addAccount() {
-      const url = "http://localhost:3000/api/v1/accounts/add";
+      const url = "http://localhost:3000/api/v1/database/account/add";
       alert("url"+url+" login: "+this.login_name + " displayname: " + this.display_name);
       let result = await axios.post(url, {
         login_name: this.login_name,
@@ -52,6 +52,7 @@ export default {
       });
       console.warn(result);
       if (result.status == 201) {
+        alert(result.data);
         localStorage.setItem("user-info", JSON.stringify(result.data))
                 this.$router.push({name:'HelloWorld'})
       }

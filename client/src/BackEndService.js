@@ -3,19 +3,16 @@ import axios from 'axios';
 const url = 'http://localhost:3000/api/v1/database';
 
 class BackEndService {
-    //Get Posts
-    /*static getLogins() {
+    //Get accounts
+    /*static async getLogins() {
         return new Promise(async (resolve, reject) => {
             try
             {
-                const res = await axios.get(url);
+                const urllist = url + "/account";
+                alert(urllist);
+                const res = await axios.get(urllist);
                 const data = res.data;
-                resolve(
-                    data.map(post => ({
-                        ...post,
-                        createdAt: new Date(post.createdAt)
-                    }))
-                );
+                resolve(data);
             }
             catch(err)
             {
@@ -23,6 +20,22 @@ class BackEndService {
             }
         })
     }*/
+
+    static getLogins() {
+        try {
+            const acRows = null;
+            const urllist = url + "/account";
+            alert(urllist);
+            return axios.get(urllist).then(resp => {
+                resp.data
+            });
+            
+        }
+        catch (err) {
+            throw (err);
+        }
+    }
+
     static async getDCs() {
         return new Promise(async (resolve, reject) => {
             try {
@@ -38,18 +51,40 @@ class BackEndService {
             }
         })
     }
-    /*async getDCs() {
-        const urladd = url+"/dc";
-        alert(urladd);
-            let result = await axios.get(urladd);
-            console.warn(result);
-            if (result.status == 200) {
-                const res = await JSON.stringify(result.data);
-                localStorage.setItem("user-info", res);
-                alert("result :"+res);
-                return res;
-        }
-    }*/
+    /* static async getDCs() {
+         const urladd = url+"/dc";
+         alert(urladd);
+             let result = await axios.get(urladd);
+             console.warn(result);
+             if (result.status == 200) {
+                 const res = await JSON.stringify(result.data);
+                 localStorage.setItem("user-info", res);
+                 alert("result :"+res);
+                 return res;
+         }
+     }*/
+
+    /* static getDCs() {
+         const urladd = url+"/dc";
+         alert(urladd);
+             let result;
+             result = async()=>{
+                 await axios.get(urladd)
+             } 
+             const res = async()=>{
+                 await JSON.stringify(result.data);
+             }
+              console.log(res);
+              alert("result :"+res);
+              return res;
+             /*console.warn(result);
+             if (result.status == 200) {
+                 const res = await JSON.stringify(result.data);
+                 localStorage.setItem("user-info", res);
+                 alert("result :"+res);
+                 return res;
+         }
+     }*/
 
     //Create Post
     static addAccount(login_name, display_name, pass_word) {

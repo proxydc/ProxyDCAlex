@@ -1,38 +1,22 @@
 <script setup>
-
 import { ref } from 'vue'
-
-
 const showCreationForm = ref(false);
-
 const props = defineProps({
   firstname: {type: String, required: true},
   name: {type: String, required: true},
   email: {type: String, required: true}
 })
-
 defineEmits(['update:firstname', 'update:name', 'update:email', 'create'])
-
-//var firstname, name, email;
 function showAndClearForm(){
   /* Si le formulaire est clos c'est soit qu'il n'a jamais été ouvert, soit qu'il a été fermé par le Emit, 
   donc les données ont été envoyées vers l'API */
   alert("***1***")
-  //BackEndService.addCandidat(name, firstname, email);
- 
   showCreationForm.value = true;
   props.firstname='';
   props.name = '';
-  props.email = '';
-  
-   alert("***2***")
-
+  props.email = '';  
+  alert("***2***")
 }
-function Initialize(){
-  alert("***"+props.firstname+"***")
- 
-}
-
 </script>
 
 <template>

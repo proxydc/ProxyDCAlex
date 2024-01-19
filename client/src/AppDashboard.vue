@@ -1,17 +1,21 @@
 <script setup>
 
-import { computed, reactive } from 'vue'
+import { computed, reactive, onMounted  } from 'vue'
 
 import BoNewDc from './components/BoNew.vue'
 import BoListItem from './components/BoListItem.vue'
 import BackEndService from './BackEndService'
-
+import axios from 'axios'
 
 /* TODO get data from WS */
-    //var DcRows = computed(() => {return JSON.stringify(BackEndService.getDCs())});
+    //var DcRows = onMounted(() => {fetch(BackEndService.getDCs())});
     //var DcRows =  JSON.stringify(BackEndService.getDCs());
-    var DcRows =  BackEndService.getDCs();
-    // = BackEndService.getDCs().then(val=>val).catch(err=> alert(err));  
+    //var DcRows =  BackEndService.getDCs();
+    const url = 'http://localhost:3000/api/v1/database/dc';
+    var DcRows =  axios.get(url).then(res=>{
+      res.data;
+ });
+    //var DcRows =  getDataDCs();
 /*[
   {name: 'A', firstname: 'Alexandra', id: 'xp47w5wzt8segz1zeldkvm', tags: [], status: 'En cours'},
   {name: 'B', firstname: 'Bob', id: 'o9n5r3ta0l2z2zijmiqwu', tags: ['Java'], status: 'Finalisé'},
@@ -31,6 +35,25 @@ function createDc(event){
   newDcInfos.id = uuid;*/
   // PUT to API
 }
+function Logout(Logout)
+{
+  alert("Iam here");
+  localStorage.setItem('token', '');
+  return  this.$router.push({name:'HelloWorld'})
+}
+function getDataDCs()
+{
+  const url = 'http://localhost:3000/api/v1/database/dc';
+
+/*let result = await axios.get(url);
+this.AcRows = await JSON.stringify(result.data) ;
+alert("rrr"+this.AcRows);
+   console.log(this.AcRows)*/
+return axios.get(url).then(res=>{
+   console.log(res.data)
+   res.data;
+ });
+}
 
 </script>
 
@@ -46,6 +69,9 @@ function createDc(event){
             <a class="navbar-brand" href="#">ProxyDC</a>
             
             <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Candidats</a>
               </li>
@@ -65,7 +91,7 @@ function createDc(event){
             </div>
 
             <div class="nav justify-content-end">
-                <button type="button" class="btn btn-outline-danger">Se déconnecter</button>
+                <button type="button" class="btn btn-outline-danger" click="Logout" >Se déconnecter</button>
             </div>
 
           </div>

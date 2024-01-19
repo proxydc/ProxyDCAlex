@@ -2,18 +2,14 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./routers";
 import './assets/bootstrap_yeti.css'
+import { h } from "vue";
 
 createApp(App)
-    .use(router)
+    .use(router)    
     .mount("#app");
 
-/*import Vue from 'vue'
-import App from './App.vue'
-import router from './routers'
 
-//import 'bootstrap/dist/css/bootstrap.min.css'
-
-Vue.config.productionTip = false
+/*Vue.config.productionTip = false
 
 new Vue({
   router,

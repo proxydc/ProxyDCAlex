@@ -2,6 +2,7 @@
     <div>
         <img class="logo" src="../assets/logo_proxiad.png" />
         <h1>Login</h1>
+        
         <div class="login">
             <input type="text" v-model="login_name" placeholder="Enter Login" />
             <input type="password" v-model="pass_word" placeholder="Enter Password" />
@@ -25,16 +26,6 @@ export default {
             error: '',
         }
     },
-   /*async created() {
-        try
-        {
-            this.msg = await BackEndService.authentificationLogin(this.login_name, this.pass_word);
-        }
-        catch(err) 
-        {
-            this.error = err.message;
-        }
-    },*/
     methods:{
         async login()
         {
@@ -48,6 +39,12 @@ export default {
             if(result.status == 200)  
             {
                 localStorage.setItem("user-info", JSON.stringify(result.data))
+                alert(result.data);
+                localStorage.setItem('token', 'hdsfhqishiofhiqsdhfhdksqhfklmqjdmsfjildjsfioj7467d687dfsgnjklfhnglk46396fdgnlkjndflkg646346drg,fkldjg' )
+                alert("datalogin: "+ JSON.stringify(result.data));
+                var obj =JSON.stringify(result.data[0])
+                alert("id: "+ obj);
+                alert("id1: "+ obj[0]);
                 this.$router.push({name:'AppDashboard'})
             }
         }

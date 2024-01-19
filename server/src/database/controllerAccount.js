@@ -9,7 +9,9 @@ const getAuthentification = (req, res) => {
         if (noAccountFound) {
             res.send("Login failed");
         }
-        res.status(200).send("Login success!");
+        else {
+            res.status(200).json(results.rows);
+        }
     });
 };
 
