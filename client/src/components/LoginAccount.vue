@@ -1,6 +1,5 @@
 <template>
     <div>
-        <img class="logo" src="../assets/logo_proxiad.png" />
         <h1>Login</h1>
         
         <div class="login">
@@ -22,6 +21,7 @@ export default {
     name: 'LoginAccount',
     data() {
         return {
+            //account: [],
             msg: '',
             error: '',
         }
@@ -38,14 +38,23 @@ export default {
             console.warn(result); 
             if(result.status == 200)  
             {
-                localStorage.setItem("user-info", JSON.stringify(result.data))
-                alert(result.data);
+                const resp = result.data;
+                localStorage.setItem("user-info", resp)
+                alert("data"+resp);
                 localStorage.setItem('token', 'hdsfhqishiofhiqsdhfhdksqhfklmqjdmsfjildjsfioj7467d687dfsgnjklfhnglk46396fdgnlkjndflkg646346drg,fkldjg' )
-                alert("datalogin: "+ JSON.stringify(result.data));
-                var obj =JSON.stringify(result.data[0])
-                alert("id: "+ obj);
-                alert("id1: "+ obj[0]);
-                this.$router.push({name:'AppDashboard'})
+
+                if(resp==1)
+                {
+                    alert("iam in admin");
+                    localStorage.setItem('useraccount', 'admin')
+                    this.$router.push({name:'admin'})
+                }
+                else
+                {
+                    alert("iam in user");
+                    localStorage.setItem('useraccount', 'user')
+                    this.$router.push({name:'AppDashboard'})
+                }
             }
         }
     }

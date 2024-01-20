@@ -1,4 +1,5 @@
 <template>
+   <img class="logo" src="./assets/logo_proxiad.png" />
   <router-view />
 </template>
 
