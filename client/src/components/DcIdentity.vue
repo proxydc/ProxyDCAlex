@@ -1,9 +1,19 @@
 <script setup>
+import { onMounted } from 'vue';
+
 defineProps({
   firstname: {type: String, required: true},
   name: {type: String, required: true},
   email: {type: String, required: true}
-})
+})/*,
+function getDC(id)
+{
+
+}
+onMounted() {
+  this.getDC(this.$route.params.id)
+}*/
+
 </script>
 
 <template>

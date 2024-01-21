@@ -5,8 +5,8 @@
             <strong>{{ error }}</strong> 
         </div>       
         <div class="login">
-            <input type="text" v-model="login_name" placeholder="Enter Login" />
-            <input type="password" v-model="pass_word" placeholder="Enter Password" />
+            <input type="text" v-model="login_name" placeholder="Enter Login" class="form-control"/>
+            <input type="password" v-model="pass_word" placeholder="Enter Password" class="form-control"/>
             <button v-on:click="login">Login!</button>
             <p>
                 <router-link to="/">Home</router-link>
