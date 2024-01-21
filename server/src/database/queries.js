@@ -1,5 +1,5 @@
 //queries reg accounts
-const getAccounts = "select * from account";
+const getAccounts = "select a.*, r.role_name from account a, role r where a.role_id = r.id order by a.id asc";
 const getAccountById = "select * from account where id = $1";
 const checkLoginExists = "select a from account a where a.login_name = $1";
 const addAccount = "insert into account(login_name, display_name, pass_word, role_id) values ($1, $2, $3, $4)";

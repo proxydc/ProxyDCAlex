@@ -1,5 +1,5 @@
-import AddAccount from "../public/admin/AddAccount.vue";
-import EditAccount from "../public/admin/EditAccount.vue";
+/*import AddAccount from "./admin/AddAccount.vue";
+import EditAccount from "./admin/EditAccount.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import LoginAccount from "./components/LoginAccount.vue";
 import AppDashboard from "./AppDashboard.vue";
@@ -7,8 +7,9 @@ import NotFound from "./components/NotFound"
 import AppForm from "./AppForm.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { authGuard } from "./_helpers/auth-guard";
-import admin from "../public/admin/admin.vue";
-import AdminLayout from "../public/admin/admin_Layout.vue";
+import admin from "./admin/admin.vue";
+import AdminLayout from "./admin/admin_Layout.vue";
+import user from "./User/user.vue";
 
 
 
@@ -20,6 +21,7 @@ const routes = [
         component: AdminLayout,
         children: [
             { name: "admin", component: admin, path: "/admin", beforeEnter: authGuard, },
+            { name: "user", component: user, path: "/user", beforeEnter: authGuard, },
             { name: "AddAccount", component: AddAccount, path: "/addAccount", beforeEnter: authGuard, },
             { name: "EditAccount", component: EditAccount, path: "/editAccount/:id", beforeEnter: authGuard, },]
     },
@@ -71,4 +73,4 @@ const router = createRouter({
     next()
 })*/
 
-export default router;
+//export default router;

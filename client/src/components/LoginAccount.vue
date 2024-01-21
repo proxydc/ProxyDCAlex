@@ -1,7 +1,9 @@
 <template>
     <div>
         <h1>Login</h1>
-        
+        <div v-if="error!=''" class="alert alert-danger alert-dismissible fade show">
+            <strong>{{ error }}</strong> 
+        </div>       
         <div class="login">
             <input type="text" v-model="login_name" placeholder="Enter Login" />
             <input type="password" v-model="pass_word" placeholder="Enter Password" />
@@ -21,40 +23,43 @@ export default {
     name: 'LoginAccount',
     data() {
         return {
-            //account: [],
             msg: '',
             error: '',
         }
     },
-    methods:{
-        async login()
-        {
-            const url = 'http://localhost:3000/api/v1/database/account';
-            
-            let result = await axios.post(url, {
-                login_name: this.login_name,
-                pass_word: this.pass_word
-            });
-            console.warn(result); 
-            if(result.status == 200)  
-            {
-                const resp = result.data;
-                localStorage.setItem("user-info", resp)
-                alert("data"+resp);
-                localStorage.setItem('token', 'hdsfhqishiofhiqsdhfhdksqhfklmqjdmsfjildjsfioj7467d687dfsgnjklfhnglk46396fdgnlkjndflkg646346drg,fkldjg' )
+    methods: {
+        async login() {
+            try {
+                const url = 'http://localhost:3000/api/v1/database/account';
 
-                if(resp==1)
-                {
-                    alert("iam in admin");
-                    localStorage.setItem('useraccount', 'admin')
-                    this.$router.push({name:'admin'})
+                let result = await axios.post(url, {
+                    login_name: this.login_name,
+                    pass_word: this.pass_word
+                });
+                console.warn(result);
+                if (result.status == 200) {
+                    const resp = result.data;
+                    localStorage.setItem("user-info", resp)
+                    alert("data" + resp);
+                    localStorage.setItem('token', 'hdsfhqishiofhiqsdhfhdksqhfklmqjdmsfjildjsfioj7467d687dfsgnjklfhnglk46396fdgnlkjndflkg646346drg,fkldjg')
+
+                    if (resp == 1) {
+                        alert("iam in admin");
+                        localStorage.setItem('useraccount', 'admin')
+                        this.$router.push({ name: 'admin' })
+                    }
+                    else {
+                        alert("iam in user");
+                        localStorage.setItem('useraccount', 'user')
+                        this.$router.push({ name: 'user' })
+                        //this.$router.push({ name: 'AppDashboard' })
+                    }
                 }
-                else
-                {
-                    alert("iam in user");
-                    localStorage.setItem('useraccount', 'user')
-                    this.$router.push({name:'AppDashboard'})
-                }
+            }
+            catch (err) {
+                console.log("err" + err);
+                alert("iam in error login" + err);
+                this.error = err;
             }
         }
     }

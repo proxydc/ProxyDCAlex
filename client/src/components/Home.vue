@@ -9,7 +9,7 @@
 //import BackEndService from "../BackEndService";
 import axios from "axios";
 export default {
-  name: "HelloWorld",
+  name: "Home",
   data() {
     return {
       AcRows: [],

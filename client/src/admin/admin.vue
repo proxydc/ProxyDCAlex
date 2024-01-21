@@ -1,5 +1,5 @@
 <template>
-<!--  <Admin_Layout/> -->
+  <!--<Admin_Layout/> -->
   <div>
    <!-- <h1>Welcome to Admin ProxyDC</h1>-->
     <!-- <nav>
@@ -36,6 +36,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Login</th>
                 <th scope="col">Display Name</th>
+                <th scope="col">Role Name</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -44,6 +45,7 @@
                 <th scope="row">{{ acRow.id }}</th>
                 <td>{{ acRow.login_name }}</td>
                 <td>{{ acRow.display_name }}</td>
+                <td>{{ acRow.role_name}}</td>
                 <td>
                   <a class="btn btn-success mx-2" :href="'/editAccount/' + acRow.id">
                     Edit
@@ -71,8 +73,8 @@
   
 <script>
 //import BackEndService from "../BackEndService";
-import Admin_Layout from "./admin_Layout.vue";
 import axios from "axios";
+import Admin_Layout from "../admin/admin_Layout.vue";
 export default {
     name: "admin",
     data() {

@@ -31,7 +31,6 @@
 <script>
 //import BackEndService from "../BackEndService";
 import axios from "axios";
-import Admin_Layout from "./admin_Layout.vue";
 
 export default {
   name: "EditAccount",

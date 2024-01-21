@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import AdminHeader from '../../src/components/AdminHeader.vue';
-import AdminNav from '../../src/components/AdminNav.vue';
+import AdminHeader from '../components/AdminHeader.vue';
+import AdminNav from '../components/AdminNav.vue';
 export default {
     name: 'AdminLayout',
     components: {
