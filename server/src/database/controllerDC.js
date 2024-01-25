@@ -1,6 +1,8 @@
 const pool = require('../../db');
 const queries = require('./queries')
 
+const initialDocument = '{ "technicalAbilities": ["SCRUM", "Java"], "functionalAbilities": ["Banking", "CMS", "CRM & ERP"], "languages": ["français", "anglais"], "certifications": [{"year": 2021, "title": "CISCO"}, {"year": 2018, "title": "CNA5"}], "bref": "lorem ipsum dolor", "experiences": [], "projects": [], "skills": { "environments": "Java JEE", "languages": "Java JEE", "databases": "PostgreSQL, MySQL", "tools": "Zabbix, Nagios", "systems": "Linux RHEL8" }}';
+const initialTags = ''
 const getDCs = (req, res) => {
     pool.query(queries.getDCs, (error, results) => {
         if (error) throw error;
@@ -26,7 +28,7 @@ const addDC= (req, res) => {
         }
         else {
             //add DC to db
-            pool.query(queries.addDC, [familyname, firstname, email ], (error, results) => {
+            pool.query(queries.addDC, [familyname, firstname, email, 2, initialDocument ], (error, results) => {
                 if (error) throw error;
                 res.status(201).send("Candidat created Successfully!");
             })
@@ -36,7 +38,7 @@ const addDC= (req, res) => {
 };
 
 const deleteDCById = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     pool.query(queries.getDCById, [id], (error, results) => {
         const noDCFound = !results.rows.length;
         if (noDCFound) {
@@ -52,7 +54,7 @@ const deleteDCById = (req, res) => {
 };
 
 const updateDC = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const { tags, document } = req.body;
     pool.query(queries.getDCById, [id], (error, results) => {
         const noDCFound = !results.rows.length;

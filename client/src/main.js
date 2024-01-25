@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./routers";
 import './assets/bootstrap_yeti.css'
-import { h } from "vue";
+//import { h } from "vue";
 
 createApp(App)
     .use(router)    

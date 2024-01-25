@@ -6,12 +6,12 @@ import Home from "../components/Home.vue";
 import LoginAccount from "../components/LoginAccount.vue";
 import AppDashboard from "../AppDashboard.vue";
 import NotFound from "../components/NotFound"
-import AppForm from "../AppForm.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { authGuard } from "../_helpers/auth-guard";
 import admin from "../admin/admin.vue";
 import AdminLayout from "../admin/admin_Layout.vue";
 import user from "../User/user.vue";
+import FormCandidatSaisie from "../candidats/FormCanSaisie.vue";
 const routes = [
     {
         path: '/adminLayout',
@@ -49,9 +49,9 @@ const routes = [
         beforeEnter: authGuard,//=='admin' || authGuard=='user',
     },
     {
-        name: "AppForm",
-        component: AppForm,
-        path: "/appForm/:id",
+        name: "FormCandidatSaisie",
+        component: FormCandidatSaisie,
+        path: "/formCandidatSaisie/:id",
     },
     {
         name: "NotFound",

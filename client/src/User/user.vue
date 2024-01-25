@@ -15,6 +15,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
                 <th scope="col">Tags</th>
+                <th scope="col">Document</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -26,12 +27,16 @@
                 <td>{{ acRow.email }}</td>
                 <td>{{ acRow.dc_status }}</td>
                 <td>{{ acRow.tags }}</td>
+                <td>{{ acRow.document }}</td>
                 <td>
                   <a class="btn btn-success mx-2" :href="'/editDC/' + acRow.id">
                     Edit
                   </a>
                   <button type="button" class="btn btn-danger mx-2" @click="deleteDC(acRow.id)">
                     Delete
+                  </button>
+                  <button type="button" class="btn btn-danger mx-2" @click="goToDC(acRow.id)">
+                    Voir
                   </button>
                   <a class="btn btn-outline-primary btn-sm" :href="'/appForm/' + acRow.id">
                     Voir le dossier
@@ -45,6 +50,57 @@
           </table>
         </div>
       </div>
+    </div>
+    <div>
+      <div class="container">
+      <div class="row">
+        <div class="col">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Bref</th>
+                <th scope="col">Skills</th>
+                <th scope="col">S-Tools</th>
+                <th scope="col">S-Environments</th>
+                <th scope="col">Technicals</th>
+                <th scope="col">Fuctionals</th>
+                <th scope="col">Lanuages</th>
+                <th scope="col">Databases</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr v-for="(acRow, index) in this.AcRows" :key="index">
+                <th scope="row">{{ acRow.document.bref }}</th>
+                <td>{{ acRow.document.skills }}</td>
+                <td>{{ acRow.document.skills.tools }}</td>
+                <td>{{ acRow.document.skills.environments }}</td>
+                <td>{{ acRow.document.technicalAbilities }}</td>
+                <td>{{ acRow.document.functionalAbilities }}</td>
+                <td>{{ acRow.document.languages }}</td>
+                <td>{{ acRow.document.skills.databases }}</td>
+                <td>
+                  <a class="btn btn-success mx-2" :href="'/editDC/' + acRow.id">
+                    Edit
+                  </a>
+                  <button type="button" class="btn btn-danger mx-2" @click="deleteDC(acRow.id)">
+                    Delete
+                  </button>
+                  <button type="button" class="btn btn-danger mx-2" @click="goToDC(acRow.id)">
+                    Voir
+                  </button>
+                  <a class="btn btn-outline-primary btn-sm" :href="'/appForm/' + acRow.id">
+                    Voir le dossier
+                  </a>
+                  <button type="button" class="btn btn-outline-danger btn-sm">
+                    Archiver
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </template>
@@ -97,6 +153,11 @@ export default {
           }
         });
       }
+    },
+    goToDC(dcId) {
+      alert("DC: " + dcId);
+      let self = this;
+      self.$router.push(`/formCandidatSaisie/${dcId}`);
     }
   },
   components: { Admin_Layout }
