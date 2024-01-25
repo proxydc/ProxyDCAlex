@@ -1,32 +1,5 @@
 <template>
-  <!--<Admin_Layout/> -->
   <div>
-   <!-- <h1>Welcome to Admin ProxyDC</h1>-->
-    <!-- <nav>
-        <router-link to="/addAccount">Add Account</router-link> |
-        <router-link to="/">Logout</router-link> |
-        <router-link to="/appDashboard">Gérer DC</router-link>
-      </nav> -->
-
-   <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="collapse navbar-collapse" id="navbarToggler">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/addAccount">Add Account</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/appDashboard">Candidats</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/">Se déconnecter</a>
-          </li>
-        </ul>
-      </div>
-    </nav> -->
-
     <div class="container">
       <div class="row">
         <div class="col">
@@ -54,14 +27,6 @@
                     Delete
                   </button>
                 </td>
-                <!--<td>
-                  <a class="btn btn-outline-primary btn-sm" :href="BoDcLink">
-                    Voir le dossier
-                  </a>
-                  <button type="button" class="btn btn-outline-danger btn-sm">
-                    Archiver
-                  </button>
-                </td>-->
               </tr>
             </tbody>
           </table>
@@ -72,7 +37,6 @@
 </template>
   
 <script>
-//import BackEndService from "../BackEndService";
 import axios from "axios";
 import Admin_Layout from "../admin/admin_Layout.vue";
 export default {
@@ -85,8 +49,6 @@ export default {
     },
     mounted() {
         try {
-            console.log("Iam here");
-            //this.AcRows = BackEndService.getLogins();
             this.getLogins();
             console.log("data: " + this.AcRows);
         }

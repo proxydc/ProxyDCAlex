@@ -1,26 +1,16 @@
 <template>
   <div>
-    <h1>Edit Account</h1>
+    <h1>Edit Candidat</h1>
     <h2>{{ errorlst }}</h2>
     <div class="register"> 
-      <label for="lblogin">Login Name</label> 
-      <input type="text" v-model="model.account.login_name" class="form-control" id="lblogin" disabled >
-      <label for="lbdisplay">Display Name</label>     
-      <input type="text" id="lbdisplay" v-model="model.account.display_name" placeholder="Enter Display Name" class="form-control" />
-      <label for="lbpassword">Password</label>
-      <input type="password" v-model="model.account.pass_word" placeholder="Enter Password" id="lbpassword" class="form-control" />
-      <div class="example ex1">
-        <h5>Select Role</h5>
-        <label class="radio red">
-          <input type="radio" v-model="model.account.role_id" value="1" name="group1" />
-          <span>Admin</span>
-        </label>
-        <label class="radio blue">
-          <input type="radio" v-model="model.account.role_id" value="2" name="group1" />
-          <span>User</span>
-        </label>
-      </div>
-      <button v-on:click="updateAccount">Update Account</button>
+      <label for="lbfamilyname">Nom</label> 
+      <input type="text" v-model="model.candidat.familyname" class="form-control" id="lbfamilyname" disabled >
+      <label for="lbfirstname">Prénom</label>     
+      <input type="text" id="lbfirstname" v-model="model.candidat.firstname" placeholder="Enter First Name" class="form-control" />
+      <label for="lbemail">Email</label>
+      <input type="email" v-model="model.candidat.email" placeholder="Enter Email" id="lbemail" class="form-control" />
+     
+      <button v-on:click="updateCandidat">Update Candidat</button>
     <!--  <p>
         <router-link to="/">Home</router-link>
       </p> -->
@@ -33,34 +23,33 @@
 import axios from "axios";
 
 export default {
-  name: "EditAccount",
+  name: "EditCandidat",
   data() {
     return {
       errorlst: '',
       model: {
-        account: {
-          id: { type: Number, required: true },
-          login_name: { type: String, required: true },
-          display_name: { type: String, required: true },
-          pass_word: { type: String, required: true },
-          role_id: { type: Number, required: true },
+        candidat: {
+          id: { type: String, required: true },
+          firstname: { type: String, required: true },
+          familyname: { type: String, required: true },
+          email: { type: String, required: true },         
         }
       }
 
     };
   },
   mounted() {
-    this.getAccountData(this.$route.params.id);
+    this.getCandidatData(this.$route.params.id);
   },
 
   methods: {
 
-    getAccountData(accountId) {
-      const url = `http://localhost:3000/api/v1/database/account/${accountId}`;
+    getCandidatData(dcId) {
+      const url = `http://localhost:3000/api/v1/database/dc/${dcId}`;
       alert("url: " + url);
       axios.get(url).then(res => {
         console.log(res.data)
-        this.model.account = res.data[0]
+        this.model.candidat = res.data[0]
 
       }).catch(function (err) {
         if (err.response) {
@@ -70,18 +59,18 @@ export default {
       });
     },
 
-    async updateAccount() {
+    async updateCandidat() {
       try {
-        const url = `http://localhost:3000/api/v1/database/account/${this.model.account.id}`;
+        const url = `http://localhost:3000/api/v1/database/dc/${this.model.candidat.id}`;
         let result = await axios.put(url, {
-          display_name: this.model.account.display_name,
-          pass_word: this.model.account.pass_word,
-          role_id: this.model.account.role_id,
+          firstname: this.model.candidat.firstname,
+          familyname: this.model.candidat.familyname,
+          email: this.model.candidat.email,
         });
-        console.warn(result);
+        console.log(result);
         if (result.status == 200) {
           alert(result.data);
-          this.$router.push({ name: 'admin' })
+          this.$router.push({ name: 'user' })
         }
       }
       catch (err) {

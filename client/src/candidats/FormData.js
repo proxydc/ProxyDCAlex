@@ -58,7 +58,7 @@ class FormData {
     static getDocumentObject(dc, document) {
 
         /* Comp fonctionnelles */
-        alert("iam in functional");
+       // alert("iam in functional");
         var domNodes = document.querySelectorAll("#fonct input");
         var nodes = [...domNodes];
         dc.functionalAbilities = nodes.map((x) => x.value).filter(function (i) { return i.trim() != ""; });
@@ -74,6 +74,7 @@ class FormData {
         var certifications = [];
         var domNodes = document.querySelectorAll("#certs div.row");
         var nodes = [...domNodes];
+        //alert("je suis la nodes length: "+ nodes.length);
         for (let i = 0; i < nodes.length; i++) {
             var year = nodes[i].childNodes[0].childNodes[0].value;
             var label = nodes[i].childNodes[1].childNodes[0].value;
@@ -82,7 +83,7 @@ class FormData {
             }
         }
         dc.certifications = certifications;
-        console.log("certifications: " + dc.certifications[0].year);
+        //console.log("certifications: " + dc.certifications[0].year);
 
         /* Langues */
         var domNodes = document.querySelectorAll("#langs input");
@@ -160,7 +161,7 @@ class FormData {
 
         dc.projects = personalProjects;
         console.log("document projects values: " + dc.projects[0]?.period);
-        alert("document projects values: " + dc.projects[0]?.title);
+        //alert("document projects values: " + dc.projects[0]?.title);
         return dc;
     }
 }

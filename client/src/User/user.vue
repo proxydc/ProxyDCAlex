@@ -9,25 +9,25 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">Id</th>
+               <!--  <th scope="col">Id</th> -->
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
                 <th scope="col">Tags</th>
-                <th scope="col">Document</th>
+                <!-- <th scope="col">Document</th>-->
                 <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
               <tr v-for="(acRow, index) in this.AcRows" :key="index">
-                <th scope="row">{{ acRow.id }}</th>
+           <!-- <th scope="row">{{ acRow.id }}</th> -->
                 <td>{{ acRow.familyname }}</td>
                 <td>{{ acRow.firstname }}</td>
                 <td>{{ acRow.email }}</td>
                 <td>{{ acRow.dc_status }}</td>
                 <td>{{ acRow.tags }}</td>
-                <td>{{ acRow.document }}</td>
+                <!-- <td>{{ acRow.document }}</td> -->
                 <td>
                   <a class="btn btn-success mx-2" :href="'/editDC/' + acRow.id">
                     Edit
@@ -35,10 +35,10 @@
                   <button type="button" class="btn btn-danger mx-2" @click="deleteDC(acRow.id)">
                     Delete
                   </button>
-                  <button type="button" class="btn btn-danger mx-2" @click="goToDC(acRow.id)">
+              <!--    <button type="button" class="btn btn-danger mx-2" @click="goToDC(acRow.id)">
                     Voir
-                  </button>
-                  <a class="btn btn-outline-primary btn-sm" :href="'/appForm/' + acRow.id">
+                  </button> -->
+                  <a class="btn btn-outline-primary btn-sm" :href="'/formCandidatSaisie/' + acRow.id" target="_blank">
                     Voir le dossier
                   </a>
                   <button type="button" class="btn btn-outline-danger btn-sm">
@@ -52,7 +52,7 @@
       </div>
     </div>
     <div>
-      <div class="container">
+   <!--   <div class="container">
       <div class="row">
         <div class="col">
           <table class="table table-hover">
@@ -100,13 +100,12 @@
           </table>
         </div>
       </div>
-    </div>
+    </div> -->
     </div>
   </div>
 </template>
   
 <script>
-//import BackEndService from "../BackEndService";
 import Admin_Layout from "../admin/admin_Layout.vue";
 import axios from "axios";
 export default {

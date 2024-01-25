@@ -24,6 +24,7 @@ const routes = [
             { name: "EditAccount", component: EditAccount, path: "/editAccount/:id", beforeEnter: authGuard, },
             { name: "AddDC", component: AddDC, path: "/addDC", beforeEnter: authGuard, },
             { name: "EditDC", component: EditDC, path: "/editDC/:id", beforeEnter: authGuard, },
+            { name: "FormCandidatSaisie", component: FormCandidatSaisie, path: "/formCandidatSaisie/:id", },
         ]
     },
 
@@ -48,11 +49,11 @@ const routes = [
         path: "/appDashboard",
         beforeEnter: authGuard,//=='admin' || authGuard=='user',
     },
-    {
+   /* {
         name: "FormCandidatSaisie",
         component: FormCandidatSaisie,
         path: "/formCandidatSaisie/:id",
-    },
+    },*/
     {
         name: "NotFound",
         component: NotFound,

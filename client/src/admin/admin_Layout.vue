@@ -1,10 +1,11 @@
 <template>
     <div class="admin">
-        <AdminHeader/>
-        <AdminNav/>
-        <router-view/>
+        <div v-if="getUser() == 'admin' || getUser() == 'user'">
+            <AdminHeader />
+            <AdminNav />
+        </div>
+        <router-view />
     </div>
-   
 </template>
 
 <script>
@@ -15,6 +16,13 @@ export default {
     components: {
         AdminHeader,
         AdminNav
+    },
+    methods:
+    {
+        getUser(){
+            alert("iam in get user");
+            return localStorage.getItem('useraccount')
+        }
     }
 }
 </script>

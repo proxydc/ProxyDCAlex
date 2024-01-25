@@ -1,7 +1,8 @@
 const pool = require('../../db');
 const queries = require('./queries')
+const docTemplate = require('./documentTemplate')
 
-const initialDocument = '{ "technicalAbilities": ["SCRUM", "Java"], "functionalAbilities": ["Banking", "CMS", "CRM & ERP"], "languages": ["français", "anglais"], "certifications": [{"year": 2021, "title": "CISCO"}, {"year": 2018, "title": "CNA5"}], "bref": "lorem ipsum dolor", "experiences": [], "projects": [], "skills": { "environments": "Java JEE", "languages": "Java JEE", "databases": "PostgreSQL, MySQL", "tools": "Zabbix, Nagios", "systems": "Linux RHEL8" }}';
+const initialDocument = docTemplate.getDocumentTemplate;
 const initialTags = ''
 const getDCs = (req, res) => {
     pool.query(queries.getDCs, (error, results) => {
@@ -18,7 +19,7 @@ const getDCById = (req, res) => {
     });
 };
 
-const addDC= (req, res) => {
+const addDC = (req, res) => {
     const { familyname, firstname, email } = req.body;
 
     //check if DC exists
@@ -28,7 +29,7 @@ const addDC= (req, res) => {
         }
         else {
             //add DC to db
-            pool.query(queries.addDC, [familyname, firstname, email, 2, initialDocument ], (error, results) => {
+            pool.query(queries.addDC, [familyname, firstname, email, 2, initialDocument], (error, results) => {
                 if (error) throw error;
                 res.status(201).send("Candidat created Successfully!");
             })
